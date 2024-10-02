@@ -163,7 +163,6 @@
                 <p id="mensajeCodigo" class="mt-2"></p>
             </div>
 
-
             <div class="mt-3">
                 <label for="valorEventoInput" class="mb-3">Valor a pagar:</label>
                 <input type="text" id="valorEventoInput" class="form-control" readonly>
@@ -175,17 +174,17 @@
 
             <div class="alerta-guardado" id="alertaGuardado">
                 <h2>Guardado con éxito</h2>
-                <button class="btn btn-light" onclick="cerrarAlerta()">Cerrar</button>
+                <button class="btn btn-light" onclick="cerrarAlertaGuardado()">Cerrar</button>
             </div>
-        </div>
+    </div>
 
     </form>
-</div>
+    </div>
 
     <div class="alerta-menor" id="alertaMenor">
         <h2>Lo sentimos</h2>
         <p>No puedes asistir a los eventos si tienes menos de 15 años.</p>
-        <button class="btn btn-light" onclick="cerrarAlerta()">Cerrar</button>
+        <button class="btn btn-light" onclick="cerrarAlertaMenor()">Cerrar</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -194,8 +193,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 
     <script>
         function calcularEdad() {
@@ -208,9 +205,7 @@
                 edad--;
             }
 
-
             document.getElementById('edad').value = edad;
-
 
             if (edad < 15) {
                 document.getElementById('alertaMenor').style.display = 'block';
@@ -232,11 +227,13 @@
             });
         }
 
-        function cerrarAlerta() {
+        function cerrarAlertaMenor() {
             document.getElementById('alertaMenor').style.display = 'none';
         }
 
-
+        function cerrarAlertaGuardado() {
+            document.getElementById('alertaGuardado').style.display = 'none';
+        }
 
         function precioEvento(eventId) {
             let value = "";
@@ -261,13 +258,11 @@
             const valorEventoInput = document.getElementById('valorEvento');
             const valorPagoInput = document.getElementById('valorEventoInput');
 
-
             if (valorOriginal === 0) {
                 valorOriginal = parseFloat(valorEventoInput.value.replace(/\./g, '').replace(',', '.').split(' ')[0]);
             }
 
             let valorEvento = valorOriginal;
-
 
             if (codigosPromocionales.includes(codigoIngresado)) {
 
@@ -291,11 +286,6 @@
         function mostrarAlerta() {
             document.getElementById('alertaGuardado').style.display = 'block';
         }
-
-        function cerrarAlerta() {
-            document.getElementById('alertaGuardado').style.display = 'none';
-        }
-
     </script>
 
 </body>
