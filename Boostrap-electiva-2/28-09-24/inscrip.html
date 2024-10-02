@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .alerta-menor {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(158, 158, 158, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .alerta-guardado {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xl">
+        <form action="">
+            <div class="text-center mb-5 pt-3">
+                <h1>Inscripción</h1>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="documento" aria-label="Floating label select example" required>
+                    <option value="" disabled selected>Selecciona un documento</option>
+                    <option value="1">Cédula de Ciudadanía</option>
+                    <option value="2">Tarjeta de identidad</option>
+                    <option value="3">Pasaporte</option>
+                </select>
+                <label for="documento">Tipo de Documento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="numeroDocumento" placeholder="">
+                <label for="numeroDocumento">Documento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nombre" placeholder="">
+                <label for="nombre">Nombre</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="fecha" required onblur="calcularEdad()">
+                <label for="fecha">Fecha de nacimiento :</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="edad" placeholder="Edad" readonly>
+                <label for="edad">Edad</label>
+            </div>
+            <div class="container mt-5">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link text-decoration-none" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Eventos
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="accordion" id="eventAccordion">
+                                    <div class="card">
+                                        <div class="card-header" id="eventHeading1">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link text-decoration-none" type="button"
+                                                    data-toggle="collapse" data-target="#eventCollapse1"
+                                                    aria-expanded="true" aria-controls="eventCollapse1">
+                                                    Partidos Sub 20
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="eventCollapse1" class="collapse" aria-labelledby="eventHeading1"
+                                            data-parent="#eventAccordion">
+                                            <div class="card-body">
+                                                Valor de la boleta 5.000 COP
+                                                <div>
+                                                    <button class="btn btn-primary mt-2" type="button"
+                                                        onclick="precioEvento(1)">Seleccionar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="eventHeading2">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link text-decoration-none" type="button"
+                                                    data-toggle="collapse" data-target="#eventCollapse2"
+                                                    aria-expanded="false" aria-controls="eventCollapse2">
+                                                    Academía de Natación
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="eventCollapse2" class="collapse" aria-labelledby="eventHeading2"
+                                            data-parent="#eventAccordion">
+                                            <div class="card-body ">
+                                                Inscripción 20.000 COP
+                                                <div>
+                                                    <button class="btn btn-primary mt-2" type="button"
+                                                        onclick="precioEvento(2)">Seleccionar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="eventHeading3">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link text-decoration-none" type="button"
+                                                    data-toggle="collapse" data-target="#eventCollapse3"
+                                                    aria-expanded="false" aria-controls="eventCollapse3">
+                                                    Ciclismo de Montaña
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="eventCollapse3" class="collapse" aria-labelledby="eventHeading3"
+                                            data-parent="#eventAccordion">
+                                            <div class="card-body flex-column">
+                                                Evento gratuito, anímate a participar.
+                                                <div>
+                                                    <button class="btn btn-primary mt-2" type="button"
+                                                        onclick="precioEvento(3)">Seleccionar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <label for="valorEvento">Valor del Evento Seleccionado:</label>
+                <input type="text" id="valorEvento" class="form-control" readonly>
+            </div>
+
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="codigo" placeholder="codigo">
+                <label for="codigo">Codigo Promocional</label>
+                <button class="btn btn-secondary mt-2" type="button" onclick="validarCodigo()">Aplicar Código</button>
+                <p id="mensajeCodigo" class="mt-2"></p>
+            </div>
+
+
+            <div class="mt-3">
+                <label for="valorEventoInput" class="mb-3">Valor a pagar:</label>
+                <input type="text" id="valorEventoInput" class="form-control" readonly>
+            </div>
+
+            <div class="container text-center mt-5">
+                <button class="btn btn-primary" onclick="mostrarAlerta()">Guardar</button>
+            </div>
+
+            <div class="alerta-guardado" id="alertaGuardado">
+                <h2>Guardado con éxito</h2>
+                <button class="btn btn-light" onclick="cerrarAlerta()">Cerrar</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+    <div class="alerta-menor" id="alertaMenor">
+        <h2>Lo sentimos</h2>
+        <p>No puedes asistir a los eventos si tienes menos de 15 años.</p>
+        <button class="btn btn-light" onclick="cerrarAlerta()">Cerrar</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+        function calcularEdad() {
+            var hoy = new Date();
+            var cumpleaños = new Date(document.getElementById('fecha').value);
+            var edad = hoy.getFullYear() - cumpleaños.getFullYear();
+            var m = hoy.getMonth() - cumpleaños.getMonth();
+
+            if (m < 0 || (m === 0 && hoy.getDate() < cumpleaños.getDate())) {
+                edad--;
+            }
+
+
+            document.getElementById('edad').value = edad;
+
+
+            if (edad < 15) {
+                document.getElementById('alertaMenor').style.display = 'block';
+                disableAccordion(true);
+            } else {
+                document.getElementById('alertaMenor').style.display = 'none';
+                disableAccordion(false);
+            }
+        }
+
+        function disableAccordion(disable) {
+            const buttons = document.querySelectorAll('.accordion .btn');
+            buttons.forEach(button => {
+                if (disable) {
+                    button.classList.add('disabled');
+                } else {
+                    button.classList.remove('disabled');
+                }
+            });
+        }
+
+        function cerrarAlerta() {
+            document.getElementById('alertaMenor').style.display = 'none';
+        }
+
+
+
+        function precioEvento(eventId) {
+            let value = "";
+            if (eventId === 1) {
+                value = '5.000 COP';
+            } else if (eventId === 2) {
+                value = '20.000 COP';
+            } else if (eventId === 3) {
+                value = 'Gratis';
+            }
+
+            document.getElementById('valorEvento').value = value;
+        }
+
+        let codigosPromocionales = ["Bono1", "Bono2", "Bono3", "Bono4"];
+        let codigosUtilizados = [];
+        let valorOriginal = 0;
+
+        function validarCodigo() {
+            const codigoIngresado = document.getElementById('codigo').value;
+            const mensaje = document.getElementById('mensajeCodigo');
+            const valorEventoInput = document.getElementById('valorEvento');
+            const valorPagoInput = document.getElementById('valorEventoInput');
+
+
+            if (valorOriginal === 0) {
+                valorOriginal = parseFloat(valorEventoInput.value.replace(/\./g, '').replace(',', '.').split(' ')[0]);
+            }
+
+            let valorEvento = valorOriginal;
+
+
+            if (codigosPromocionales.includes(codigoIngresado)) {
+
+                if (codigosUtilizados.includes(codigoIngresado)) {
+                    mensaje.innerHTML = "Este código ya ha sido utilizado";
+                    valorPagoInput.value = valorOriginal.toFixed(2).replace('.', ',') + " COP";
+                } else {
+                    codigosUtilizados.push(codigoIngresado);
+                    const descuento = valorEvento * 0.10;
+                    const valorFinal = valorEvento - descuento;
+
+                    valorPagoInput.value = valorFinal.toFixed(2).replace('.', ',') + " COP";
+                    mensaje.innerHTML = "Código aplicado con éxito. Descuento del 10%";
+                }
+            } else {
+                mensaje.innerHTML = "Código no válido";
+                valorPagoInput.value = valorOriginal.toFixed(2).replace('.', ',') + " COP";
+            }
+        }
+
+        function mostrarAlerta() {
+            document.getElementById('alertaGuardado').style.display = 'block';
+        }
+
+        function cerrarAlerta() {
+            document.getElementById('alertaGuardado').style.display = 'none';
+        }
+
+    </script>
+
+</body>
+
+</html>
