@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actividad en Clase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script>
+        class BuscarElprofeBarrientos extends HTMLElement {
+            constructor() {
+                super();
+            }
+            connectedCallback() {
+                const shadow = this.attachShadow({ mode: "open" });
+                const buscarcaja = document.createElement("input");
+                buscarcaja.type = "text";
+                buscarcaja.name = "buscar";
+                buscarcaja.id = "buscar";
+                buscarcaja.placeholder = "Buscar con ChatGPT";
+                buscarcaja.className = "buscarcaja";
+
+                const style = document.createElement("style");
+                style.textContent = `
+                    .buscarcaja {
+                        width: 100%;           /* Ancho completo */
+                        padding: 10px;        /* Espaciado interno */
+                        border: 2px solid #007bff; /* Color y grosor del borde */
+                        border-radius: 20px;  /* Esquinas redondeadas */
+                        outline: none;        /* Quitar el contorno al hacer clic */
+                        transition: border-color 0.3s; /* Transición suave para el color del borde */
+                    }
+                    .buscarcaja:focus {
+                        border-color: #CD5C5C;  /* Color del borde al enfocar */
+                    }
+                `;
+
+                shadow.appendChild(style);
+                shadow.appendChild(buscarcaja);
+            }
+        }
+        
+        // Define el nuevo elemento
+        customElements.define("buscar-elprofebarrientos", BuscarElprofeBarrientos);
+
+        class FechaHoy extends HTMLElement {
+            constructor() {
+                super();
+                let shadowRoot = this.attachShadow({ mode: 'open' });
+
+                shadowRoot.innerHTML = `
+                <style>
+                    // div {
+                    //     font-size: 20px;
+                    //     color: blue;
+                    // }
+                </style>
+                <div>${this.fecha()}</div>`;
+            }
+
+            fecha() {
+                var today = new Date();
+                var dia = String(today.getDate());
+                var mes = String(today.getMonth() + 1); // January is 0!
+                var ano = today.getFullYear();
+                return `${dia}/${mes}/${ano}`;
+            }
+        }
+
+        // Define el nuevo elemento
+        customElements.define("fecha-hoy", FechaHoy);
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col bg-secondary ">
+                    <img src="imgs/ChatGPT-Logo.png" style="width: 180px; height: 80px ; padding: 10;" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Inicio -->
+    <div class="container">
+        <div class="row mt-3 border">
+            <div class="col text-start">
+                <h2><fecha-hoy></fecha-hoy></h2>
+            </div>
+            <div class="col text-center">
+                <h2>Bienvenido son las: 10 am</h2>
+            </div>
+            <div class="col text-end">
+                <a href="https://chatgpt.com/" target="_blank" class="text-dark text-decoration-none "><h2>Ir a chatGPT</h2></a>
+            </div>
+        </div>
+    </div>
+    <!-- Buscar con chatGPT -->
+    <div class="container mt-3">
+        <div class="row text-center">
+            <div class="col">
+                <buscar-elprofebarrientos></buscar-elprofebarrientos>
+            </div>
+        </div>
+    </div>
+    <!-- Compras con el carrito -->
+    <div class="container mt-3 ">
+        <div class="row ">
+            <div class="col ">
+                <div class="card text-center" style="width: 18rem; height: 340px">
+                    <img src="imgs/chatgpt.webp" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre: xxxx</h5>
+                        <p class="card-text">Precio: 1500$</p>
+                        <a href="#" class="btn btn-primary">Ir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 18rem; height: 340px">
+                    <img src="imgs/chatgpt.webp" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre: xxxx</h5>
+                        <p class="card-text">Precio: 1500$</p>
+                        <a href="#" class="btn btn-primary">Ir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <div class="card text-center" style="width: 18rem; height: 340px">
+                    <img src="imgs/chatgpt.webp" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre: xxxx</h5>
+                        <p class="card-text">Precio: 1500$</p>
+                        <a href="#" class="btn btn-primary">Ir al carrito</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="container text-center mt-4 border">
+        <div class="row">
+            <div class="col">
+                <p>Derechos reservados El Profe Barrientos</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
